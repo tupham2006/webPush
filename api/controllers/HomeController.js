@@ -1,5 +1,5 @@
 var publicKey = "BDw6MSUkf-IHWX5idF4ciBCWKhaWLtXgnWRMIYo41I17KaKNQBPEzzNm3UzXazCEnkIX9dsg1BnPsHUduFTuAKI";
-var privateKey = 'AIzaSyD-rhAxmfP7binLSBgNs4OC4JF0pS7x_AA';
+var privateKey = 'AAAAmYAW9uI:APA91bGd5b6lQ6oj-sIztzpIIjnkjnir3Qo7ZZ1C656cKXn-fa39vAm0wB4hty1mY2mZLvY-4ML7bpMSXrVKp9FFQXOaPZ9wqqwahnSH0yNuiZ7eBwH7R8E_Rz2XjIxpdXLPSylW4hiW';
 const webpush = require('web-push');
 
 module.exports = {

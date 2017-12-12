@@ -1,5 +1,5 @@
 var publicKey = "BDw6MSUkf-IHWX5idF4ciBCWKhaWLtXgnWRMIYo41I17KaKNQBPEzzNm3UzXazCEnkIX9dsg1BnPsHUduFTuAKI";
-var privateKey = "zTf34wFd-f3ZAfedaozE46CKZNhsmXT51rDfoNvjPuw";
+var privateKey = 'AIzaSyD-rhAxmfP7binLSBgNs4OC4JF0pS7x_AA';
 const webpush = require('web-push');
 
 module.exports = {
@@ -18,7 +18,17 @@ module.exports = {
 			}
 		};
 
-		webpush.setGCMAPIKey('AIzaSyD-rhAxmfP7binLSBgNs4OC4JF0pS7x_AA');
+		var vapidKeys = {
+		  publicKey: publicKey,
+		  privateKey: privateKey
+		};
+
+		webpush.setVapidDetails(
+		  'https://damp-bayou-27809.herokuapp.com/',
+		  vapidKeys.publicKey,
+		  vapidKeys.privateKey
+		);
+
 		webpush.sendNotification(pushSubscription, 'Your Push Payload Text');
 	}
 };

@@ -3,7 +3,7 @@ self.addEventListener('push', function(event) {
 	 event.waitUntil(
 	 	self.registration.showNotification('SalonHero', {
 	 		lang: 'vi',
-	 		body: 'Bạn có muốn hiển thị thông báo không?',
+	 		body: event.data ? event.data : "Không hiển thị đưọc thông báo",
 	 	})
 
 	 	.then(function(NotificationEvent) { 

@@ -20,9 +20,10 @@ hello
 					if (subscription) {
 			      return subscription;
 			    }
+			    
 			    return registration.pushManager.subscribe({
 			     userVisibleOnly: true,
-			     applicationServerKey: urlBase64ToUint8Array("BDw6MSUkf-IHWX5idF4ciBCWKhaWLtXgnWRMIYo41I17KaKNQBPEzzNm3UzXazCEnkIX9dsg1BnPsHUduFTuAKI")
+			     applicationServerKey: urlBase64ToUint8Array("BFEo68txQDeRPcrmuxjyclLJnJzyWBwn7ZoakS2ymW1lr0HaRYJ3OKabljuqyFSWVrH-GTho6JiPpoX2HIJzn5o")
 			   	});
 			  });
   		})
@@ -30,19 +31,19 @@ hello
 			console.log("subscription", JSON.stringify(subscription));
 			endpoint = subscription.endpoint;
 
-			// $.ajax({
-			// 	method: "POST",
-			// 	headers: {
-		 //      'Content-Type': 'application/json'
-		 //    },
-			// 	url:"/push/register",
-			// 	data: {
-			// 		key: JSON.stringify(subscription),
-			// 	},
-			// 	success: function(response){
-		 //  		console.log("response", response);
-			// 	}
-			// });
+			$.ajax({
+				method: "POST",
+				headers: {
+		      'Content-Type': 'application/json'
+		    },
+				url:"/push/register",
+				data: {
+					key: JSON.stringify(subscription),
+				},
+				success: function(response){
+		  		console.log("response", response);
+				}
+			});
 
 		});
 

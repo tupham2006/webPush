@@ -21,20 +21,9 @@ hello
     messagingSenderId: "426490483066"
   };
 
-  firebase.initializeApp(config);
-  const messaging = firebase.messaging();
-  messaging.requestPermission()
-  	.then(function(){
-  		console.log("Have permission");
-  		return messaging.getToken();
-  	})
-
-  	.then(function(token){
-  		console.log(token);
-  	})
-
-  	.catch(function(e){
-  		console.log('error', e);
+  
+  	messaging.onMessage(function(payload){
+  		
   	});
 </script>
 <!-- <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>

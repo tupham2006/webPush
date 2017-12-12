@@ -27,6 +27,13 @@ module.exports = {
 		  },
 		};
 
-		webpush.sendNotification(pushSubscription, payload, option);
+		webpush.sendNotification(pushSubscription, payload, option)
+		.then(function() {
+      res.sendStatus(201);
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
 	}
 };

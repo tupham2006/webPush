@@ -8,21 +8,6 @@ module.exports = {
 	},
 
 	send: function(req, res){
-		
-		function urlBase64ToUint8Array(base64String) {
-		  var padding = '='.repeat((4 - base64String.length % 4) % 4);
-		  var base64 = (base64String + padding)
-		    .replace(/\-/g, '+')
-		    .replace(/_/g, '/');
-		 
-		  var rawData = window.atob(base64);
-		  var outputArray = new Uint8Array(rawData.length);
-		 
-		  for (var i = 0; i < rawData.length; ++i) {
-		    outputArray[i] = rawData.charCodeAt(i);
-		  }
-		  return outputArray;
-		}
 
 		var pushSubscription = {
 			"endpoint":"https://fcm.googleapis.com/fcm/send/dAZTWIH_tPc:APA91bHZqgEhan4f_nL9V8G66-iqDE-RTE_o47_aNDjUjhkix6D60lZBU4KRIg6bNMxOwEkhwEDWe0Fj4JeEnJrVUjaJwlXF0SX-rpFozPJBTsxXiS0UfYBopgLuEZlK23tmzInih1jC",
@@ -32,17 +17,16 @@ module.exports = {
 			}
 		};
 
-		var vapidKeys = {
-		  publicKey: urlBase64ToUint8Array(publicKey),
-		  privateKey: urlBase64ToUint8Array(privateKey)
+		var payload = "Có khách hàng đặt lịch";
+		var option = {
+			gcmAPIKey: "AIzaSyD-rhAxmfP7binLSBgNs4OC4JF0pS7x_AA",
+		  vapidDetails: {
+		    subject: 'https://damp-bayou-27809.herokuapp.com/',
+		    publicKey: publicKey,
+		    privateKey: privateKey
+		  },
 		};
 
-		webpush.setVapidDetails(
-		  'https://damp-bayou-27809.herokuapp.com/',
-		  vapidKeys.publicKey,
-		  vapidKeys.privateKey
-		);
-
-		webpush.sendNotification(pushSubscription, 'Your Push Payload Text');
+		webpush.sendNotification(pushSubscription, payload, option);
 	}
 };

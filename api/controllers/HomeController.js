@@ -10,7 +10,7 @@ module.exports = {
 	send: function(req, res){
 
 		var pushSubscription = {
-			endpoint:"https://fcm.googleapis.com/fcm/send/dAZTWIH_tPc:APA91bHZqgEhan4f_nL9V8G66-iqDE-RTE_o47_aNDjUjhkix6D60lZBU4KRIg6bNMxOwEkhwEDWe0Fj4JeEnJrVUjaJwlXF0SX-rpFozPJBTsxXiS0UfYBopgLuEZlK23tmzInih1jC",
+			endpoint:"https://fcm.googleapis.com/fcm/send/eNftrzJUYCA:APA91bFh8KCGs4ouwYCAO7El3zUD6ZTTYgpWZzafnQgX1LYI1wSsnYwOeQq6aAdx7Tk7hgzbVZN17SZK48e2afxdoDEGN8nCAuAuocBo05OCzGm745UqUZzeOcl7YAVorg3uQ2K-kXnH",
 			keys:{
 				p256dh:"BGhdUD4dnpvErYLfQ3QUBc-sBkxL3V-yfwcpKOxm3cmhXuraBv5BMiFMPDUauny98NAF5T-xhNKoJds_PFUOYFU=",
 				auth:"71uky0cz6KvyUqG6n4W4IA=="
@@ -28,12 +28,12 @@ module.exports = {
 		};
 
 		webpush.sendNotification(pushSubscription, payload, option)
-		.then(function() {
-      res.status(201);
-    })
-    .catch(function(error) {
-      console.log(error);
-      res.status(500);
-    });
+			.then(function() {
+	      res.status(201);
+	    })
+	    .catch(function(error) {
+	      console.log(error);
+	      res.status(500);
+	    });
 	}
 };

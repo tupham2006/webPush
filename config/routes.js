@@ -34,6 +34,8 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage',
+    controller: "HomeController",
+    action: "send"
   },
 
 

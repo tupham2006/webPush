@@ -5,6 +5,7 @@
 </head>
 <body>
 hello
+<button onclick="send()">SEND</button>
 </body>
 </html>
 <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
@@ -29,23 +30,36 @@ hello
 			console.log("subscription", JSON.stringify(subscription));
 			endpoint = subscription.endpoint;
 
-			$.ajax({
+			// $.ajax({
+			// 	method: "POST",
+			// 	headers: {
+		 //      'Content-Type': 'application/json'
+		 //    },
+			// 	url:"/push/register",
+			// 	data: {
+			// 		key: JSON.stringify(subscription),
+			// 	},
+			// 	success: function(response){
+		 //  		console.log("response", response);
+			// 	}
+			// });
+
+		});
+
+	});
+	function send(){
+		$.ajax({
 				method: "POST",
 				headers: {
 		      'Content-Type': 'application/json'
 		    },
-				url:"/push/register",
-				data: {
-					key: JSON.stringify(subscription),
-				},
+				url:"/send",
 				success: function(response){
 		  		console.log("response", response);
 				}
 			});
 
-		});
-
-	});
+	}
 		function urlBase64ToUint8Array(base64String) {
 		  var padding = '='.repeat((4 - base64String.length % 4) % 4);
 		  var base64 = (base64String + padding)

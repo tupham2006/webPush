@@ -34,6 +34,9 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage',
+  },
+
+  'post /send': {
     controller: "HomeController",
     action: "send"
   },
@@ -48,9 +51,9 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-  'post /push/register': {
-    controller: "HomeController",
-    action: "register"
-  }
+  // 'post /push/register': {
+  //   controller: "HomeController",
+  //   action: "register"
+  // }
 
 };

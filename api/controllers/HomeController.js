@@ -9,6 +9,10 @@ module.exports = {
 		return res.json({key: key});
 	},
 	send: function(req, res){
+		const vapidKeys = webpush.generateVAPIDKeys();
+		console.log(vapidKeys);
+		return res.json({vapidKeys: vapidKeys});
+		
 		var pushSubscription = {
 			endpoint:"https://fcm.googleapis.com/fcm/send/dhwptTziGQA:APA91bFzuQNiHeslyZm5VHQ9flDrgwf0OKG5okaS9CfPynJtXHiOMyLORqBtbflbBpgT1MQHiRtEFLhWwBd-A851vgFV5iOoZbKqRbZwugngRB-enuJWe-n-IClsKHBmeRrE1MzS84qz",
 			"expirationTime":null,

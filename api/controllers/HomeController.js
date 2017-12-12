@@ -25,11 +25,10 @@ module.exports = {
 		}
 
 		var pushSubscription = {
-			endpoint:"https://fcm.googleapis.com/fcm/send/dhwptTziGQA:APA91bFzuQNiHeslyZm5VHQ9flDrgwf0OKG5okaS9CfPynJtXHiOMyLORqBtbflbBpgT1MQHiRtEFLhWwBd-A851vgFV5iOoZbKqRbZwugngRB-enuJWe-n-IClsKHBmeRrE1MzS84qz",
-			"expirationTime":null,
-			keys:{
-				p256dh:"BMCrojGuqQYWARLLY86LW_hTWP94Ab_G67jpKn6RrTLxL4m55OpB8KyNtzHCdAQ2Q1wsGBVsGFQdf0h7eUB4tSo=",
-				auth:"SEh3oGONb9nrw2OchmLC8w=="
+			"endpoint":"https://fcm.googleapis.com/fcm/send/dAZTWIH_tPc:APA91bHZqgEhan4f_nL9V8G66-iqDE-RTE_o47_aNDjUjhkix6D60lZBU4KRIg6bNMxOwEkhwEDWe0Fj4JeEnJrVUjaJwlXF0SX-rpFozPJBTsxXiS0UfYBopgLuEZlK23tmzInih1jC",
+			"keys":{
+				"p256dh":"BGhdUD4dnpvErYLfQ3QUBc-sBkxL3V-yfwcpKOxm3cmhXuraBv5BMiFMPDUauny98NAF5T-xhNKoJds_PFUOYFU=",
+				"auth":"71uky0cz6KvyUqG6n4W4IA=="
 			}
 		};
 

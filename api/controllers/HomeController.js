@@ -10,10 +10,10 @@ module.exports = {
 	send: function(req, res){
 
 		var pushSubscription = {
-			"endpoint":"https://fcm.googleapis.com/fcm/send/dAZTWIH_tPc:APA91bHZqgEhan4f_nL9V8G66-iqDE-RTE_o47_aNDjUjhkix6D60lZBU4KRIg6bNMxOwEkhwEDWe0Fj4JeEnJrVUjaJwlXF0SX-rpFozPJBTsxXiS0UfYBopgLuEZlK23tmzInih1jC",
-			"keys":{
-				"p256dh":"BGhdUD4dnpvErYLfQ3QUBc-sBkxL3V-yfwcpKOxm3cmhXuraBv5BMiFMPDUauny98NAF5T-xhNKoJds_PFUOYFU=",
-				"auth":"71uky0cz6KvyUqG6n4W4IA=="
+			endpoint:"https://fcm.googleapis.com/fcm/send/dAZTWIH_tPc:APA91bHZqgEhan4f_nL9V8G66-iqDE-RTE_o47_aNDjUjhkix6D60lZBU4KRIg6bNMxOwEkhwEDWe0Fj4JeEnJrVUjaJwlXF0SX-rpFozPJBTsxXiS0UfYBopgLuEZlK23tmzInih1jC",
+			keys:{
+				p256dh:"BGhdUD4dnpvErYLfQ3QUBc-sBkxL3V-yfwcpKOxm3cmhXuraBv5BMiFMPDUauny98NAF5T-xhNKoJds_PFUOYFU=",
+				auth:"71uky0cz6KvyUqG6n4W4IA=="
 			}
 		};
 

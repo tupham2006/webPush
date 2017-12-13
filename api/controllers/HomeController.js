@@ -10,10 +10,10 @@ module.exports = {
 	send: function(req, res){
 
 		var pushSubscription = {
-			endpoint:"https://fcm.googleapis.com/fcm/send/eNftrzJUYCA:APA91bFh8KCGs4ouwYCAO7El3zUD6ZTTYgpWZzafnQgX1LYI1wSsnYwOeQq6aAdx7Tk7hgzbVZN17SZK48e2afxdoDEGN8nCAuAuocBo05OCzGm745UqUZzeOcl7YAVorg3uQ2K-kXnH",
-			keys:{
-				p256dh:"BDkizV9XyQ3pWWOLXq_tw5-fI2ddqsQivME9dkXJHMFpjbE647iN8z7IC5H8Z7K_vwJIqc6b4WwH9_Py9XxltS8=",
-				auth:"_bFOUSygYxVtH1_h55D0ww=="
+			"endpoint":"https://fcm.googleapis.com/fcm/send/eNftrzJUYCA:APA91bFh8KCGs4ouwYCAO7El3zUD6ZTTYgpWZzafnQgX1LYI1wSsnYwOeQq6aAdx7Tk7hgzbVZN17SZK48e2afxdoDEGN8nCAuAuocBo05OCzGm745UqUZzeOcl7YAVorg3uQ2K-kXnH",
+			"keys":{
+				"p256dh":"BDkizV9XyQ3pWWOLXq_tw5-fI2ddqsQivME9dkXJHMFpjbE647iN8z7IC5H8Z7K_vwJIqc6b4WwH9_Py9XxltS8=",
+				"auth":"_bFOUSygYxVtH1_h55D0ww=="
 			}
 		};
 

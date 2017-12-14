@@ -29,10 +29,10 @@ module.exports = {
 				WebPush.create(data)
 					.exec(function(err, result){
 						if(err) return reject(err);
-						return resolve();
+						return resolve(result);
 					});
 				} else {
-					return resolve();
+					return resolve(webpush);
 				}
 			});
 		});	

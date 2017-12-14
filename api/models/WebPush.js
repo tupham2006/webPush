@@ -29,8 +29,10 @@ module.exports = {
 				WebPush.create(data)
 					.exec(function(err, result){
 						if(err) return reject(err);
-						return resolve(result);
+						return resolve();
 					});
+				} else {
+					return resolve();
 				}
 			});
 		});	

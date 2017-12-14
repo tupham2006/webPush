@@ -22,7 +22,7 @@ module.exports = {
 		var authKey = keys.auth;
 
 		console.log(userId, endpoint, p256dhKey, authKey);
-		
+
 		// validate
 		if(!userId || !endpoint || !p256dhKey || !authKey){
 			return res.json({
@@ -42,6 +42,7 @@ module.exports = {
 		// query to create
 		WebPush.createToken(data)
 			.then(function(result){
+				console.log(result)
 				return res.json({
 					message: "Đăng ký thành công",
 					status: 1

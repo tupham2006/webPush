@@ -9,8 +9,8 @@ module.exports = {
 		// var userId = parseInt(req.session.currentUser.id);
 		var userId = 249;
 		var endpoint = (req.param("endpoint") ? req.param("endpoint") : "" ).toString().replace(/ /g, "");
-		var p256dhKey = ( req.param("p256dh") ? req.param("p256dh") : "" ).toString().replace(/ /g, "");
-		var authKey = ( req.param("auth") ? req.param("auth") : "" ).toString().replace(/ /g, "");
+		var p256dhKey = ( req.param("p256dh_key") ? req.param("p256dh_key") : "" ).toString().replace(/ /g, "");
+		var authKey = ( req.param("auth_key") ? req.param("auth_key") : "" ).toString().replace(/ /g, "");
 
 		// validate
 		if(!userId || !endpoint || !p256dhKey || !authKey){

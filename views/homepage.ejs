@@ -28,19 +28,26 @@ hello
 			  });
   		})
 		.then(function(subscription) {   
-			console.log("subscription", JSON.stringify(subscription));
+			if(subscription){
+				var data = {
+					subscription: subscription.endpoint,
+					p256dh_key: subscription.getKey("p256dh"),
+					auth_key: subscription.getKey("auth"),
+				};
 
-			$.ajax({
-				method: "POST",
-				headers: {
-		      'Content-Type': 'application/json'
-		    },
-				url:"/webPush/register",
-				data: JSON.stringify(subscription),
-				success: function(response){
-		  		console.log("response", response);
-				}
-			});
+				$.ajax({
+					method: "POST",
+					headers: {
+			      'Content-Type': 'application/json'
+			    },
+					url:"/webPush/register",
+					data: JSON.stringify(data),
+					success: function(response){
+			  		console.log("response", response);
+					}
+				});
+				
+			}
 
 		});
 

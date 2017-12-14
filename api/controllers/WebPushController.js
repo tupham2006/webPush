@@ -42,7 +42,7 @@ module.exports = {
 		// query to create
 		WebPush.createToken(data)
 			.then(function(result){
-				console.log(result)
+				console.log(result);
 				return res.json({
 					message: "Đăng ký thành công",
 					status: 1
@@ -50,7 +50,7 @@ module.exports = {
 			})
 
 			.catch(function(e){
-				console.log("User :: " + userId + " :: register");
+				console.log("User " + userId + " : WebPushController :: registerPush ", e);
 				return res.json({
 					message: e.message,
 					status: 0

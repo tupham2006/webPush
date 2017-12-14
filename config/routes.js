@@ -51,9 +51,9 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-  'post /push/register': {
-    action: "registerPush",
-    controller: "PushWebTokenController",
+  'post /webPush/register': {
+    controller: "WebPushController",
+    action: "registerWebPush"
   }
 
 };

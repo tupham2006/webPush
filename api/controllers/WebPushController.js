@@ -3,7 +3,7 @@ var privateKey = 'ytC0bAvbn0ZrhDnOfwEVVuYWOwl9HygRA69RJ_PXwOE';
 const webpush = require('web-push');
 
 module.exports = {
-	registerPush: function (req, res) {
+	registerWebPush: function (req, res) {
 		
 		// get data from client
 		// var userId = parseInt(req.session.currentUser.id);
@@ -29,7 +29,7 @@ module.exports = {
 		};
 
 		// query to create
-		PushWebToken.createToken(data)
+		WebPush.createToken(data)
 			.then(function(result){
 				return res.json({
 					message: "Đăng ký thành công",

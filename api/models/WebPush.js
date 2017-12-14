@@ -1,6 +1,6 @@
 module.exports = {
-	tableName: "push_web_tokens",
-	globalId: "PushWebToken",
+	tableName: "web_pushs",
+	globalId: "WebPush",
 	attributes: {
 		id:{type:"integer", autoIncrement: true, primaryKey:true},
     user_id: { type: 'integer', maxLength: 11, required: true},

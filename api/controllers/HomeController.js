@@ -6,7 +6,7 @@ module.exports = {
 	register: function (req, res) {
 		var key = req.param('key');
 		return res.json({
-			message: true
+			message: "success"
 		});
 	},
 

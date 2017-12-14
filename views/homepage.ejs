@@ -27,14 +27,6 @@ hello
 			  });
   		})
 		.then(function(subscription) {   
-			console.log(subscription);
-			var subscriptionObject = {
-			  endpoint: subscription.endpoint,
-			  keys: {
-			    p256dh: subscription.getKey('p256dh'),
-			    auth: subscription.getKey('auth')
-			  }
-			};
 
 			$.ajax({
 				method: "POST",
@@ -42,7 +34,7 @@ hello
 		      'Content-Type': 'application/json'
 		    },
 				url:"/push/register",
-				data: subscriptionObject,
+				data: JSON.stringify(subscription),
 				success: function(response){
 		  		console.log("response", response);
 				}

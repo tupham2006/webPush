@@ -45,7 +45,7 @@ module.exports.connections = {
     host: 'sql10.freemysqlhosting.net',
     user: 'sql10210614', //optional
     password: 'i6r75AfVPp', //optional
-    database: ' sql10210614' //optional
+    database: 'sql10210614' //optional
   },
 
   /***************************************************************************

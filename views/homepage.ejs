@@ -27,6 +27,7 @@ hello
 			  });
   		})
 		.then(function(subscription) {   
+			console.log("subscription", JSON.stringify(subscription));
 
 			$.ajax({
 				method: "POST",

@@ -1,3 +1,4 @@
+// add Event Listener push to receive notification
 self.addEventListener('push', function(event) {
 	console.log(event)
 	 event.waitUntil(

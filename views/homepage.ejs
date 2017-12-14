@@ -31,8 +31,8 @@ hello
 			var subscriptionObject = {
 			  endpoint: subscription.endpoint,
 			  keys: {
-			    p256dh: subscription.getKeys('p256dh'),
-			    auth: subscription.getKeys('auth')
+			    p256dh: subscription.getKey('p256dh'),
+			    auth: subscription.getKey('auth')
 			  }
 			};
 

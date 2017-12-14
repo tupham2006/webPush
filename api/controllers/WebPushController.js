@@ -9,9 +9,20 @@ module.exports = {
 		// var userId = req.session.currentUser.id;
 		var userId = 249;
 		var endpoint = (req.param("endpoint") ? req.param("endpoint") : "" ).toString().replace(/ /g, "");
-		var p256dhKey = ( req.param("p256dh_key") ? req.param("p256dh_key") : "" ).toString().replace(/ /g, "");
-		var authKey = ( req.param("auth_key") ? req.param("auth_key") : "" ).toString().replace(/ /g, "");
+		var keys = ( req.param("keys") ? req.param("keys") : {});
+
+		if(!keys || typeof keys !== "object"){
+			return res.json({
+				status: 0,
+				message: "Token không đúng định dạng"
+			});
+		}
+
+		var p256dhKey = keys.p256dh;
+		var authKey = keys.auth;
+
 		console.log(userId, endpoint, p256dhKey, authKey);
+		
 		// validate
 		if(!userId || !endpoint || !p256dhKey || !authKey){
 			return res.json({

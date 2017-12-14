@@ -29,10 +29,10 @@ hello
 		.then(function(subscription) {   
 			console.log(subscription);
 			var subscriptionObject = {
-			  endpoint: pushSubscription.endpoint,
+			  endpoint: subscription.endpoint,
 			  keys: {
-			    p256dh: pushSubscription.getKeys('p256dh'),
-			    auth: pushSubscription.getKeys('auth')
+			    p256dh: subscription.getKeys('p256dh'),
+			    auth: subscription.getKeys('auth')
 			  }
 			};
 

@@ -3,13 +3,47 @@ var privateKey = 'ytC0bAvbn0ZrhDnOfwEVVuYWOwl9HygRA69RJ_PXwOE';
 const webpush = require('web-push');
 
 module.exports = {
-	register: function (req, res) {
-		console.log('ok');
-		var data = req.allParams();
-		console.log('data', data)
-		return res.json({
-			message: "success"
-		});
+	registerPush: function (req, res) {
+		
+		// get data from client
+		// var userId = parseInt(req.session.currentUser.id);
+		var userId = 249;
+		var endpoint = (req.param("endpoint") ? req.param("endpoint") : "" ).toString().replace(/ /g, "");
+		var p256dhKey = ( req.param("p256dh") ? req.param("p256dh") : "" ).toString().replace(/ /g, "");
+		var authKey = ( req.param("auth") ? req.param("auth") : "" ).toString().replace(/ /g, "");
+
+		// validate
+		if(!userId || !endpoint || !p256dhKey || !authKey){
+			return res.json({
+				message: "Thiếu User ID hoặc token của trình duyệt",
+				status: 0
+			});
+		}
+
+		// data to create
+		var data = {
+			user_id: userId,
+			endpoint: endpoint,
+			p256dh_key: p256dhKey,
+			auth_key: authKey
+		};
+
+		// query to create
+		PushWebToken.createToken(data)
+			.then(function(result){
+				return res.json({
+					message: "Đăng ký thành công",
+					status: 1
+				});
+			})
+
+			.catch(function(e){
+				console.log("User :: " + userId + " :: register");
+				return res.json({
+					message: e.message,
+					status: 0
+				});
+			});
 	},
 
 	send: function(req, res){

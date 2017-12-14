@@ -4,7 +4,7 @@ const webpush = require('web-push');
 
 module.exports = {
 	register: function (req, res) {
-		var key = req.param('key');
+		console.log('ok');
 		return res.json({
 			message: "success"
 		});

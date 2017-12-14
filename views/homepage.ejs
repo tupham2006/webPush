@@ -36,9 +36,7 @@ hello
 		      'Content-Type': 'application/json'
 		    },
 				url:"/push/register",
-				data: {
-					key: JSON.stringify(subscription),
-				},
+				data: JSON.stringify(subscription),
 				success: function(response){
 		  		console.log("response", response);
 				}

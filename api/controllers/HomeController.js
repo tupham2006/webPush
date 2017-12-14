@@ -5,12 +5,8 @@ const webpush = require('web-push');
 module.exports = {
 	register: function (req, res) {
 		console.log('ok');
-		var endpoint = req.param('endpoint');
-		var p256dh = req.param('p256dh');
-		var auth = req.param('auth');
-		console.log("endpoint", endpoint);
-		console.log("p256dh", p256dh);
-		console.log("auth", auth);
+		var data = req.allParams();
+		console.log('data', data)
 		return res.json({
 			message: "success"
 		});

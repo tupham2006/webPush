@@ -16,11 +16,23 @@ module.exports = {
 	 */
 	createToken: function (data) {
 		return new Promise(function(resolve, reject){
-			PushWebToken.create(data)
-				.exec(function(err, result){
-					if(err) return reject(err);
-					return resolve(result);
-				});
+
+			// find record
+			WebPush.findOne({
+				user_id: data.user_id,
+				endpoint: data.endpoint
+			}).exec(function(err, webpush){
+				if(err) return reject(err);
+				if(!webpush || !Object.getOwnPropertyNames(webpush).length){ // not exist, create new
+				
+				// Create new
+				WebPush.create(data)
+					.exec(function(err, result){
+						if(err) return reject(err);
+						return resolve(result);
+					});
+				}
+			});
 		});	
 	},
 

@@ -36,7 +36,11 @@ hello
 		      'Content-Type': 'application/json'
 		    },
 				url:"/push/register",
-				data: JSON.stringify(subscription),
+				data: {
+					endpoint: subscription.endpoint,
+					p256dh: subscription.p256dh,
+					auth: subscription.auth
+				},
 				success: function(response){
 		  		console.log("response", response);
 				}

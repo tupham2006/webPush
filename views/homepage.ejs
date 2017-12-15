@@ -5,58 +5,60 @@
 </head>
 <body>
 hello
+<button onclick="register()">register</button>
 <button onclick="send()">SEND</button>
 <button onclick="deregisterWebPush()">deregister</button>
 </body>
 </html>
 <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(e){
-		var endpoint;
-		if (!('serviceWorker' in navigator)) { // Service Worker isn't supported on this browser, disable or hide UI. 
-			return; 
+		function register(){
+			var endpoint;
+			if (!('serviceWorker' in navigator)) { // Service Worker isn't supported on this browser, disable or hide UI. 
+				return; 
+			}
+
+			if (!('PushManager' in window)) { // Push isn't supported on this browser, disable or hide UI. 
+				return;
+			}
+
+			// register
+			navigator.serviceWorker.register('/js/sw.js')
+			.then(function(registration) {
+				 return registration.pushManager.getSubscription()
+	  			.then(function(subscription) {
+						if (subscription) {
+							endpoint = subscription.endpoint;
+				      return subscription;
+				    }
+				    
+				    return registration.pushManager.subscribe({
+				     userVisibleOnly: true,
+				     applicationServerKey: urlBase64ToUint8Array("BFEo68txQDeRPcrmuxjyclLJnJzyWBwn7ZoakS2ymW1lr0HaRYJ3OKabljuqyFSWVrH-GTho6JiPpoX2HIJzn5o")
+				   	});
+				  });
+	  		})
+			.then(function(subscription) {   
+				if(subscription){
+					
+					$.ajax({
+						method: "POST",
+						headers: {
+				      'Content-Type': 'application/json'
+				    },
+						url:"/webPush/register",
+						data: JSON.stringify(subscription),
+						success: function(response){
+				  		console.log("response", response);
+						}
+					});
+					
+				}
+
+			});
+			
 		}
 
-		if (!('PushManager' in window)) { // Push isn't supported on this browser, disable or hide UI. 
-			return;
-		}
-
-		// register
-		// navigator.serviceWorker.register('/js/sw.js')
-		// .then(function(registration) {
-		// 	 return registration.pushManager.getSubscription()
-  // 			.then(function(subscription) {
-		// 			if (subscription) {
-		// 				endpoint = subscription.endpoint;
-		// 	      return subscription;
-		// 	    }
-			    
-		// 	    return registration.pushManager.subscribe({
-		// 	     userVisibleOnly: true,
-		// 	     applicationServerKey: urlBase64ToUint8Array("BFEo68txQDeRPcrmuxjyclLJnJzyWBwn7ZoakS2ymW1lr0HaRYJ3OKabljuqyFSWVrH-GTho6JiPpoX2HIJzn5o")
-		// 	   	});
-		// 	  });
-  // 		})
-		// .then(function(subscription) {   
-		// 	if(subscription){
-				
-		// 		$.ajax({
-		// 			method: "POST",
-		// 			headers: {
-		// 	      'Content-Type': 'application/json'
-		// 	    },
-		// 			url:"/webPush/register",
-		// 			data: JSON.stringify(subscription),
-		// 			success: function(response){
-		// 	  		console.log("response", response);
-		// 			}
-		// 		});
-				
-		// 	}
-
-		// });
-
-	});
 	function send(){
 		$.post({
 				headers: {

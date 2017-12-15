@@ -65,6 +65,7 @@ module.exports = {
 	},
 
 	PushNotification: function(token, payload, option, res){
+		console.log('test call')
 		var webPushArray = [];
 		console.log("payload", payload);
 		for(var i in token){

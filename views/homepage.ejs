@@ -6,7 +6,7 @@
 <body>
 hello
 <button onclick="send()">SEND</button>
-<button onclick="deregister()">deregister</button>
+<button onclick="deregisterWebPush()">deregister</button>
 </body>
 </html>
 <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
@@ -70,21 +70,44 @@ hello
 
 	}
 
-	function deregister(){
-		$.post({
-				headers: {
-		      'Content-Type': 'application/json'
-		    },
-		    data: JSON.stringify({
-		    	endpoint: endpoint
-		    }),
-				url:"/webPush/deregister",
-				success: function(response){
-		  		console.log("response", response);
-				}
-			});
+	function deregisterWebPush() {
+		var defer = $q.defer();
 
+		// get reader service worker
+		navigator.serviceWorker.ready
+			.then(function(registration) {
+
+			// get sub
+		  registration.pushManager.getSubscription()
+		  	.then(function(subscription) {
+		  		var endpoint = "";
+		  		if(subscription){
+		  			endpoint = subscription.endpoint;
+
+		  		// send deregister to server
+			    subscription.unsubscribe()
+				    .then(function(successful) {
+				    	
+				      $.post({
+								headers: {
+						      'Content-Type': 'application/json'
+						    },
+						    data: JSON.stringify(endpoint),
+								url:"/webPush/deregister",
+								success: function(response){
+						  		console.log("response", response);
+								}
+							});
+								
+				    }).catch(function(e) {
+							defer.reject(e);
+			    	});
+		  		}
+		  });        
+		});
+		return defer.promise;
 	}
+
 		function urlBase64ToUint8Array(base64String) {
 		  var padding = '='.repeat((4 - base64String.length % 4) % 4);
 		  var base64 = (base64String + padding)

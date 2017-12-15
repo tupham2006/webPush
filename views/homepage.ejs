@@ -74,6 +74,7 @@ hello
 		console.log("deregisterWebPush", deregisterWebPush);
 
 		if ('serviceWorker' in navigator) {
+			    console.log('run it');
   		navigator.serviceWorker.ready
 			  .then(function(registration) {
 			    console.log('A service worker is active:', registration.active);

@@ -37,7 +37,7 @@ module.exports = {
 
 		var payload = WebPushService.getPayload();
 
-		WebPush.getTokenByUserId({ user_id: userId })
+		WebPush.getTokenByUserId(userId)
 			.then(function(result){
 				console.log("result", result);
 				if(result && result.length > 0){

@@ -41,7 +41,7 @@ module.exports = {
 			.then(function(result){
 				console.log(result);
 				if(result && result.length > 0){
-					WebPushService.PushNotification(result, payload, option);
+					WebPushService.PushNotification(result, payload, option, res);
 				}
 			});
 	},
@@ -88,7 +88,7 @@ module.exports = {
 			}));
 		}
 		console.log("webPushArray", webPushArray);
-		
+
 		// promise all send message
 		Promise.all(webPushArray)
 			.then(function(){

@@ -53,7 +53,7 @@ module.exports = {
 			});
 	},
 
-	deregisterPush: function(req, res){
+	deregisterWebPush: function(req, res){
 
 		// get data from client
 		// var userId = req.session.currentUser.id;
@@ -78,7 +78,7 @@ module.exports = {
 			})
 
 			.catch(function(e){
-				console.log("User " + userId + " : WebPushController :: deregisterPush ", e);
+				console.log("User " + userId + " : WebPushController :: deregisterWebPush ", e);
 				return res.json({
 					status: 0,
 					message: e.message

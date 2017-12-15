@@ -12,7 +12,7 @@ hello
 <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(e){
-		
+		var endpoint;
 		if (!('serviceWorker' in navigator)) { // Service Worker isn't supported on this browser, disable or hide UI. 
 			return; 
 		}
@@ -25,8 +25,9 @@ hello
 		navigator.serviceWorker.register('/js/sw.js')
 		.then(function(registration) {
 			 return registration.pushManager.getSubscription()
-  			.then(function(subscription) {
+  			.then(function(endpoint) {
 					if (subscription) {
+						endpoint = subscription.endpoint;
 			      return subscription;
 			    }
 			    
@@ -74,6 +75,9 @@ hello
 				headers: {
 		      'Content-Type': 'application/json'
 		    },
+		    data: JSON.stringify({
+		    	endpoint: endpoint
+		    }),
 				url:"/webPush/deregister",
 				success: function(response){
 		  		console.log("response", response);

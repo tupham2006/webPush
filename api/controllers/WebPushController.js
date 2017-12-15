@@ -8,7 +8,7 @@ module.exports = {
 		var merchantId = 137;
 		var endpoint = (req.param("endpoint") ? req.param("endpoint") : "" ).toString().replace(/ /g, "");
 		var keys = ( req.param("keys") ? req.param("keys") : {});
-		console.log("register")
+
 		if(!keys || typeof keys !== "object"){
 			return res.json({
 				status: 0,
@@ -40,7 +40,6 @@ module.exports = {
 		WebPush.createToken(data)
 			.then(function(result){
 				return res.json({
-					message: "Đăng ký thành công",
 					status: 1
 				});
 			})
@@ -50,6 +49,39 @@ module.exports = {
 				return res.json({
 					message: e.message,
 					status: 0
+				});
+			});
+	},
+
+	deregisterPush: function(req, res){
+
+		// get data from client
+		// var userId = req.session.currentUser.id;
+
+		var userId = 249;
+		var endpoint = (req.param("endpoint") ? req.param("endpoint") : "" ).toString().replace(/ /g, "");
+
+		// validate
+		if(!endpoint){
+			return res.json({
+				message: "Thiếu token của trình duyệt",
+				status: 0
+			});
+		}
+
+		// deregister 
+		WebPush.deleteTokenByUserId(userId, endpoint)
+			.then(function(){
+				return res.json({
+					status: 1
+				});
+			})
+
+			.catch(function(e){
+				console.log("User " + userId + " : WebPushController :: deregisterPush ", e);
+				return res.json({
+					status: 0,
+					message: e.message
 				});
 			});
 	},

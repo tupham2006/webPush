@@ -56,4 +56,15 @@ module.exports = {
 	/**
 	 * delete token
 	 */
+	deleteTokenByUserId: function(userId, endpoint){
+		return new Promise(function(resolve, reject){
+			WebPush.destroy({
+				user_id: userId,
+				endpoint: endpoint
+			}).exec(function(err, result){
+				if(err) return reject(err);
+				return resolve();
+			});
+		});
+	}
 };

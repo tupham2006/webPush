@@ -54,6 +54,11 @@ module.exports.routes = {
   'post /webPush/register': {
     controller: "WebPushController",
     action: "registerWebPush"
+  },
+
+  'post /webPush/deregister': {
+    controller: "WebPushController",
+    action: "deregisterWebPush"
   }
 
 };

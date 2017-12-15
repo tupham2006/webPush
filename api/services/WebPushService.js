@@ -41,7 +41,7 @@ module.exports = {
 			.then(function(result){
 				console.log(result);
 				if(result && result.length > 0){
-					WebPushService.PushNotification(token, payload, option);
+					WebPushService.PushNotification(result, payload, option);
 				}
 			});
 	},

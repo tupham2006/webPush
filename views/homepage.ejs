@@ -71,7 +71,6 @@ hello
 	}
 
 	function deregisterWebPush() {
-		var defer = $q.defer();
 
 		// get reader service worker
 		navigator.serviceWorker.ready
@@ -87,7 +86,7 @@ hello
 		  		// send deregister to server
 			    subscription.unsubscribe()
 				    .then(function(successful) {
-				    	
+
 				      $.post({
 								headers: {
 						      'Content-Type': 'application/json'
@@ -100,12 +99,11 @@ hello
 							});
 								
 				    }).catch(function(e) {
-							defer.reject(e);
+				    	alert(e);
 			    	});
 		  		}
 		  });        
 		});
-		return defer.promise;
 	}
 
 		function urlBase64ToUint8Array(base64String) {

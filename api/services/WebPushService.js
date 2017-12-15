@@ -22,7 +22,7 @@ module.exports = {
 		var merchantHost = req.host;
 		// var userId = req.session.currentUser.id;
 		var userId = 249;
-
+		console.log("host", merchantHost);
 		if(!merchantHost) return;
 
 		// option
@@ -35,7 +35,7 @@ module.exports = {
 		  },
 		};
 
-		var payload = WebPushService.getPayload();
+		var payload = WebPushService.getPayload(type, action, data);
 
 		WebPush.getTokenByUserId(userId)
 			.then(function(result){
@@ -64,6 +64,7 @@ module.exports = {
 		if(action == "create"){
 			message = "Khách hàng " + data.customer_name + " vừa đặt lịch vào lúc "+ data.booked_at;
 		} 
+
 		return message;
 	},
 

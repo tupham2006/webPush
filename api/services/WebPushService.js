@@ -28,7 +28,7 @@ module.exports = {
 		var option = {
 			gcmAPIKey: gcmAPIKey,
 		  vapidDetails: {
-		    subject: merchantHost,
+		    subject: "https://" + merchantHost,
 		    publicKey: publicKey,
 		    privateKey: privateKey
 		  },

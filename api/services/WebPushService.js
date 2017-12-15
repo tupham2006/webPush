@@ -36,7 +36,7 @@ module.exports = {
 
 		var payload = WebPushService.getPayload(type, action, data);
 
-		WebPush.getTokenByUserId(merchantId)
+		WebPush.getTokenByMerchantId(merchantId)
 			.then(function(result){
 				if(result && result.length > 0){
 					WebPushService.PushNotification(result, payload, option, res);

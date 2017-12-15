@@ -8,7 +8,7 @@ module.exports = {
 		var merchantId = 137;
 		var endpoint = (req.param("endpoint") ? req.param("endpoint") : "" ).toString().replace(/ /g, "");
 		var keys = ( req.param("keys") ? req.param("keys") : {});
-
+		console.log("register")
 		if(!keys || typeof keys !== "object"){
 			return res.json({
 				status: 0,
@@ -20,9 +20,9 @@ module.exports = {
 		var authKey = keys.auth;
 
 		// validate
-		if(!userId || !endpoint || !p256dhKey || !authKey){
+		if( !endpoint || !p256dhKey || !authKey){
 			return res.json({
-				message: "Thiếu User ID hoặc token của trình duyệt",
+				message: "Thiếu token của trình duyệt",
 				status: 0
 			});
 		}

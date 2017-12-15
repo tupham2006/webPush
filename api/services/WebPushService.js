@@ -22,7 +22,6 @@ module.exports = {
 		var merchantHost = req.host;
 		// var userId = req.session.currentUser.id;
 		var userId = 249;
-		console.log("host", merchantHost);
 		if(!merchantHost) return;
 
 		// option
@@ -39,7 +38,6 @@ module.exports = {
 
 		WebPush.getTokenByUserId(userId)
 			.then(function(result){
-				console.log("result", result);
 				if(result && result.length > 0){
 					WebPushService.PushNotification(result, payload, option, res);
 				}
@@ -48,7 +46,6 @@ module.exports = {
 
 	getPayload: function(type, action, data){
 		var message = "";
-		console.log('1', type, action, data);
 
 		switch(type){
 			case "booking":
@@ -58,7 +55,6 @@ module.exports = {
 	},
 
 	generateBooking: function(action, data){
-		console.log('2',action);
 
 		var message = "";
 		if(action == "create"){
@@ -69,9 +65,12 @@ module.exports = {
 	},
 
 	PushNotification: function(token, payload, option, res){
-		console.log('run to this');
 		var webPushArray = [];
+		console.log("token", token);
+		console.log("payload", payload);
+		console.log("option", option);
 		for(var i in token){
+
 			webPushArray.push(new Promise(function(resolve, reject){
 				webpush.sendNotification(
 					{ // sub push
@@ -92,7 +91,6 @@ module.exports = {
 		    });
 			}));
 		}
-		console.log("webPushArray", webPushArray);
 
 		// promise all send message
 		Promise.all(webPushArray)

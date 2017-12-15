@@ -36,8 +36,8 @@ module.exports.routes = {
     view: 'homepage',
   },
 
-  'post /send': {
-    controller: "HomeController",
+  'post /webPush/send': {
+    controller: "WebPushController",
     action: "send"
   },
 

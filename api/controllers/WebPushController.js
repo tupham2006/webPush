@@ -29,6 +29,7 @@ module.exports = {
 
 		// data to create
 		var data = {
+			merchant_id: merchantId,
 			user_id: userId,
 			endpoint: endpoint,
 			p256dh_key: p256dhKey,

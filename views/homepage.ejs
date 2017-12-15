@@ -75,8 +75,9 @@ hello
 	function deregisterWebPush() {
 		console.log("deregisterWebPush", deregisterWebPush);
 
-		if ('serviceWorker' in navigator) {
 			    console.log('run it');
+			    var myController = navigator.serviceWorker.controller;
+			    console.log(myController);
   		navigator.serviceWorker.ready
 			  .then(function(registration) {
 			    console.log('A service worker is active:', registration.active);
@@ -84,9 +85,6 @@ hello
 			    // At this point, you can call methods that require an active
 			    // service worker, like registration.pushManager.subscribe()
 			  });
-			} else {
-			  console.log('Service workers are not supported.');
-			}
 
 		// get reader service worker
 		navigator.serviceWorker.ready

@@ -72,6 +72,19 @@ hello
 
 	function deregisterWebPush() {
 		console.log("deregisterWebPush", deregisterWebPush);
+
+		if ('serviceWorker' in navigator) {
+  		navigator.serviceWorker.ready
+			  .then(function(registration) {
+			    console.log('A service worker is active:', registration.active);
+
+			    // At this point, you can call methods that require an active
+			    // service worker, like registration.pushManager.subscribe()
+			  });
+			} else {
+			  console.log('Service workers are not supported.');
+			}
+
 		// get reader service worker
 		navigator.serviceWorker.ready
 			.then(function(registration) {
@@ -88,7 +101,7 @@ hello
 		  		// send deregister to server
 			    subscription.unsubscribe()
 				    .then(function(successful) {
-console.log(successful, "successful")
+							console.log(successful, "successful")
 				      $.post({
 								headers: {
 						      'Content-Type': 'application/json'

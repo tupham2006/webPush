@@ -22,39 +22,39 @@ hello
 		}
 
 		// register
-		navigator.serviceWorker.register('/js/sw.js')
-		.then(function(registration) {
-			 return registration.pushManager.getSubscription()
-  			.then(function(subscription) {
-					if (subscription) {
-						endpoint = subscription.endpoint;
-			      return subscription;
-			    }
+		// navigator.serviceWorker.register('/js/sw.js')
+		// .then(function(registration) {
+		// 	 return registration.pushManager.getSubscription()
+  // 			.then(function(subscription) {
+		// 			if (subscription) {
+		// 				endpoint = subscription.endpoint;
+		// 	      return subscription;
+		// 	    }
 			    
-			    return registration.pushManager.subscribe({
-			     userVisibleOnly: true,
-			     applicationServerKey: urlBase64ToUint8Array("BFEo68txQDeRPcrmuxjyclLJnJzyWBwn7ZoakS2ymW1lr0HaRYJ3OKabljuqyFSWVrH-GTho6JiPpoX2HIJzn5o")
-			   	});
-			  });
-  		})
-		.then(function(subscription) {   
-			if(subscription){
+		// 	    return registration.pushManager.subscribe({
+		// 	     userVisibleOnly: true,
+		// 	     applicationServerKey: urlBase64ToUint8Array("BFEo68txQDeRPcrmuxjyclLJnJzyWBwn7ZoakS2ymW1lr0HaRYJ3OKabljuqyFSWVrH-GTho6JiPpoX2HIJzn5o")
+		// 	   	});
+		// 	  });
+  // 		})
+		// .then(function(subscription) {   
+		// 	if(subscription){
 				
-				$.ajax({
-					method: "POST",
-					headers: {
-			      'Content-Type': 'application/json'
-			    },
-					url:"/webPush/register",
-					data: JSON.stringify(subscription),
-					success: function(response){
-			  		console.log("response", response);
-					}
-				});
+		// 		$.ajax({
+		// 			method: "POST",
+		// 			headers: {
+		// 	      'Content-Type': 'application/json'
+		// 	    },
+		// 			url:"/webPush/register",
+		// 			data: JSON.stringify(subscription),
+		// 			success: function(response){
+		// 	  		console.log("response", response);
+		// 			}
+		// 		});
 				
-			}
+		// 	}
 
-		});
+		// });
 
 	});
 	function send(){

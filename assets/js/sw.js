@@ -6,9 +6,5 @@ self.addEventListener('push', function(event) {
 	 		body: event.data ? event.data.text() : "Bạn có thông báo mới",
 	 		icon: 'caesar.jpg',
 	 	})
-
-	 	.then(function(NotificationEvent) { 
-	 		console.log("NotificationEvent", NotificationEvent);
-	 	})
 	 );
 });

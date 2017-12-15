@@ -71,12 +71,11 @@ hello
 	}
 
 	function deregisterWebPush() {
-		  		console.log("deregisterWebPush", deregisterWebPush)
-
+		console.log("deregisterWebPush", deregisterWebPush);
 		// get reader service worker
 		navigator.serviceWorker.ready
 			.then(function(registration) {
-		  		console.log("registration", registration)
+		  	console.log("registration", registration);
 
 			// get sub
 		  registration.pushManager.getSubscription()

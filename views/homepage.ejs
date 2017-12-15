@@ -71,22 +71,25 @@ hello
 	}
 
 	function deregisterWebPush() {
+		  		console.log("deregisterWebPush", deregisterWebPush)
 
 		// get reader service worker
 		navigator.serviceWorker.ready
 			.then(function(registration) {
+		  		console.log("registration", registration)
 
 			// get sub
 		  registration.pushManager.getSubscription()
 		  	.then(function(subscription) {
 		  		var endpoint = "";
+		  		console.log("subscription", subscription)
 		  		if(subscription){
 		  			endpoint = subscription.endpoint;
 
 		  		// send deregister to server
 			    subscription.unsubscribe()
 				    .then(function(successful) {
-
+console.log(successful, "successful")
 				      $.post({
 								headers: {
 						      'Content-Type': 'application/json'

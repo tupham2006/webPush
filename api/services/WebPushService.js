@@ -93,6 +93,7 @@ module.exports = {
 		// promise all send message
 		Promise.all(webPushArray)
 			.then(function(){
+				console.log('server ok')
 				 return res.status(201);
 			})
 			.catch(function(e){

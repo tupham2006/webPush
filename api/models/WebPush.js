@@ -5,8 +5,8 @@ module.exports = {
 		id:{type:"integer", autoIncrement: true, primaryKey:true},
     user_id: { type: 'integer', maxLength: 11, required: true},
     endpoint: { type: 'string', maxLength: 500, required: true },
-    p256dh_key: { type: 'string', maxLength: 500, required: true },
-    auth_key: { type: 'string', maxLength: 500, required: true },
+    p256dh_key: { type: 'string', maxLength: 200, required: true },
+    auth_key: { type: 'string', maxLength: 200, required: true },
     createdAt: { type: 'datetime', columnName: 'created_at' },
     updatedAt: { type: 'datetime', columnName: 'updated_at' },
 	},
@@ -36,6 +36,20 @@ module.exports = {
 				}
 			});
 		});	
+	},
+
+	/**
+	 * Get token by user id
+	 */
+	getTokenByUserId: function(userId){
+		return new Promise(function(resolve, reject){
+			WebPush.find({
+				user_id: userId
+			}).exec(function(err, result){
+				if(err) return reject(err);
+				return resolve(result);
+			});
+		});
 	},
 
 	/**

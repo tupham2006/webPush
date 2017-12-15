@@ -39,7 +39,7 @@ module.exports = {
 
 		WebPush.getTokenByUserId({ user_id: userId })
 			.then(function(result){
-				console.log(result);
+				console.log("result", result);
 				if(result && result.length > 0){
 					WebPushService.PushNotification(result, payload, option, res);
 				}

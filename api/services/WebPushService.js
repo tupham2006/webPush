@@ -20,6 +20,8 @@ module.exports = {
 		
 		// get current host
 		var merchantHost = req.host;
+		// var userId = req.session.currentUser.id;
+		var userId = 249;
 
 		if(!merchantHost) return;
 
@@ -37,6 +39,7 @@ module.exports = {
 
 		WebPush.getTokenByUserId({ user_id: userId })
 			.then(function(result){
+				console.log(result);
 				if(result && result.length > 0){
 					WebPushService.PushNotification(token, payload, option);
 				}
@@ -84,7 +87,8 @@ module.exports = {
 		    });
 			}));
 		}
-
+		console.log("webPushArray", webPushArray);
+		
 		// promise all send message
 		Promise.all(webPushArray)
 			.then(function(){

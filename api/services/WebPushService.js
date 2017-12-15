@@ -48,15 +48,18 @@ module.exports = {
 
 	getPayload: function(type, action, data){
 		var message = "";
+		console.log('1', type, action, data);
 
 		switch(type){
 			case "booking":
-				message = generateBooking(action, data);				
+				message = WebPushService.generateBooking(action, data);				
 		}
 		return message;
 	},
 
-	generateBooking: function(action){
+	generateBooking: function(action, data){
+		console.log('2',action);
+
 		var message = "";
 		if(action == "create"){
 			message = "Khách hàng " + data.customer_name + " vừa đặt lịch vào lúc "+ data.booked_at;
@@ -65,7 +68,7 @@ module.exports = {
 	},
 
 	PushNotification: function(token, payload, option, res){
-		console.log('run to this')
+		console.log('run to this');
 		var webPushArray = [];
 		for(var i in token){
 			webPushArray.push(new Promise(function(resolve, reject){

@@ -3,7 +3,9 @@ module.exports = {
 		
 		// get data from client
 		// var userId = req.session.currentUser.id;
+		// var merchantId = req.session.merchant.id;
 		var userId = 249;
+		var merchantId = 137;
 		var endpoint = (req.param("endpoint") ? req.param("endpoint") : "" ).toString().replace(/ /g, "");
 		var keys = ( req.param("keys") ? req.param("keys") : {});
 

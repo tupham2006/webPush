@@ -20,8 +20,8 @@ module.exports = {
 		
 		// get current host
 		var merchantHost = req.host;
-		// var userId = req.session.currentUser.id;
-		var userId = 249;
+		// var userId = req.session.merchant.id;
+		var merchantId = 137;
 		if(!merchantHost) return;
 
 		// option
@@ -36,7 +36,7 @@ module.exports = {
 
 		var payload = WebPushService.getPayload(type, action, data);
 
-		WebPush.getTokenByUserId(userId)
+		WebPush.getTokenByUserId(merchantId)
 			.then(function(result){
 				if(result && result.length > 0){
 					WebPushService.PushNotification(result, payload, option, res);
@@ -66,9 +66,7 @@ module.exports = {
 
 	PushNotification: function(token, payload, option, res){
 		var webPushArray = [];
-		console.log("token", token);
 		console.log("payload", payload);
-		console.log("option", option);
 		for(var i in token){
 
 			webPushArray.push(new Promise(function(resolve, reject){

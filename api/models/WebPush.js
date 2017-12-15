@@ -1,9 +1,10 @@
 module.exports = {
-	tableName: "web_pushs",
+	tableName: "web_push_tokens",
 	globalId: "WebPush",
 	attributes: {
 		id:{type:"integer", autoIncrement: true, primaryKey:true},
-    user_id: { type: 'integer', maxLength: 11, required: true},
+    merchant_id: { type: 'integer', required: true},
+    user_id: { type: 'integer', required: true},
     endpoint: { type: 'string', maxLength: 500, required: true },
     p256dh_key: { type: 'string', maxLength: 200, required: true },
     auth_key: { type: 'string', maxLength: 200, required: true },
@@ -41,10 +42,10 @@ module.exports = {
 	/**
 	 * Get token by user id
 	 */
-	getTokenByUserId: function(userId){
+	getTokenByMerchantId: function(merchantId){
 		return new Promise(function(resolve, reject){
 			WebPush.find({
-				user_id: userId
+				merchant_id: merchantId
 			}).exec(function(err, result){
 				if(err) return reject(err);
 				return resolve(result);

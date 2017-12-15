@@ -2,6 +2,7 @@
 self.addEventListener('push', function(event) {
 	console.log(event);
 	console.log(event.data);
+	console.log(event.data.text());
 	 event.waitUntil(
 	 	self.registration.showNotification('SalonHero', {
 	 		lang: 'en',

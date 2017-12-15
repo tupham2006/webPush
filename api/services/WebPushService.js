@@ -13,7 +13,7 @@ module.exports = {
 	 * @return {[type]}     [description]
 	 */
 	pushWeb: function(type, action, data, req, res) {
-
+		console.log('call push web')
 		if(!type || !action ||!data || !req || !res){
 			return;
 		}
@@ -65,7 +65,7 @@ module.exports = {
 	},
 
 	PushNotification: function(token, payload, option, res){
-		console.log('test call')
+
 		var webPushArray = [];
 		console.log("payload", payload);
 		for(var i in token){

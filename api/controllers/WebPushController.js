@@ -91,7 +91,7 @@ module.exports = {
 			customer_name: "Phạm Bảo Tú",
 			booked_at:new Date()
 		};
-
+		console.log('send')
 		WebPushService.pushWeb("booking", "create", data, req, res);
 	}
 };

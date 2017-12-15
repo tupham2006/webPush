@@ -25,7 +25,7 @@ hello
 		navigator.serviceWorker.register('/js/sw.js')
 		.then(function(registration) {
 			 return registration.pushManager.getSubscription()
-  			.then(function(endpoint) {
+  			.then(function(subscription) {
 					if (subscription) {
 						endpoint = subscription.endpoint;
 			      return subscription;

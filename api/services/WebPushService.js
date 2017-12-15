@@ -65,6 +65,7 @@ module.exports = {
 	},
 
 	PushNotification: function(token, payload, option, res){
+		console.log('run to this')
 		var webPushArray = [];
 		for(var i in token){
 			webPushArray.push(new Promise(function(resolve, reject){

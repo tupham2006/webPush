@@ -1,9 +1,12 @@
 self.addEventListener('install', function(e) {
   e.waitUntil(self.skipWaiting());
+  console.log('installed');
 });
 
 self.addEventListener('activate', function(e) {
   e.waitUntil(self.clients.claim());
+  console.log('actived');
+
 });
 
 // add Event Listener push to receive notification

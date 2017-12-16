@@ -55,13 +55,10 @@ module.exports = {
 	},
 
 	generateBooking: function(action, data){
-		var payload = {
-			message: "",
-			url_click: "/#/booking"
-		};
+		var payload = "";
 
 		if(action == "create"){
-			payload.message = "Khách hàng " + data.customer_name + " vừa đặt lịch vào lúc "+ data.booked_at;
+			payload = "Khách hàng " + data.customer_name + " vừa đặt lịch vào lúc "+ data.booked_at;
 		} 
 
 		return payload;

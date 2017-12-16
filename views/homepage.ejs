@@ -91,9 +91,9 @@ hello
 			  });
 
 		// get reader service worker
-		navigator.serviceWorker.ready
-			.then(function(registration) {
-		  	console.log("registration", registration);
+		// navigator.serviceWorker.ready
+		// 	.then(function(registration) {
+		//   	console.log("registration", registration);
 
 			// get sub
 		  registration.pushManager.getSubscription()
@@ -123,11 +123,11 @@ hello
 			    	});
 		  		}
 		  });        
-		})
+		// })
 
-			.catch(function(e){
-				console.log("bug", e)
-			})
+		// 	.catch(function(e){
+		// 		console.log("bug", e)
+		// 	})
 	}
 
 		function urlBase64ToUint8Array(base64String) {

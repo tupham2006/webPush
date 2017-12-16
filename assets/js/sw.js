@@ -18,7 +18,7 @@ self.addEventListener('push', function(event) {
 	 	self.registration.showNotification('SalonHero', {
 	 		lang: 'vi',
 	 		body: test.message,
-	 		icon: 'caesar.jpg',
+	 		icon: 'https://s3-ap-northeast-1.amazonaws.com/salonherodev/PROD/Common/logo_blue.png',
 	 		data: {
 		     url: "https://facebook.com"
 		   }

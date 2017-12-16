@@ -94,7 +94,8 @@ hello
 		// navigator.serviceWorker.ready
 		// 	.then(function(registration) {
 		//   	console.log("registration", registration);
-
+		navigator.serviceWorker.register('/js/sw.js', {scope: "./js/"})
+			.then(function(registration) {
 			// get sub
 		  registration.pushManager.getSubscription()
 		  	.then(function(subscription) {
@@ -123,7 +124,7 @@ hello
 			    	});
 		  		}
 		  });        
-		// })
+		})
 
 		// 	.catch(function(e){
 		// 		console.log("bug", e)

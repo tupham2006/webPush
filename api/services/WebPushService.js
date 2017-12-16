@@ -45,23 +45,26 @@ module.exports = {
 	},
 
 	getPayload: function(type, action, data){
-		var message = "";
+		var payload = {};
 
 		switch(type){
 			case "booking":
-				message = WebPushService.generateBooking(action, data);				
+				payload = WebPushService.generateBooking(action, data);				
 		}
-		return message;
+		return payload;
 	},
 
 	generateBooking: function(action, data){
+		var payload = {
+			message: "",
+			url_click: "/#/booking"
+		};
 
-		var message = "";
 		if(action == "create"){
-			message = "Khách hàng " + data.customer_name + " vừa đặt lịch vào lúc "+ data.booked_at;
+			payload.message = "Khách hàng " + data.customer_name + " vừa đặt lịch vào lúc "+ data.booked_at;
 		} 
 
-		return message;
+		return payload;
 	},
 
 	PushNotification: function(token, payload, option, res){

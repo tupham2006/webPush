@@ -1,4 +1,6 @@
 console.log('call to this sw');
+self.swVersion = 1;
+
 self.addEventListener('install', function(e) {
   e.waitUntil(self.skipWaiting());
   console.log('installed');

@@ -1,4 +1,3 @@
-console.log('call to this sw');
 self.swVersion = 1;
 
 self.addEventListener('install', function(e) {
@@ -9,7 +8,6 @@ self.addEventListener('install', function(e) {
 self.addEventListener('activate', function(e) {
   e.waitUntil(self.clients.claim());
   console.log('actived');
-
 });
 
 // add Event Listener push to receive notification

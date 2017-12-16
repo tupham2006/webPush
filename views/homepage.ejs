@@ -23,10 +23,11 @@ hello
 			}
 
 			// register
-			navigator.serviceWorker.register('/js/sw.js')
+			navigator.serviceWorker.register('/js/sw.js', {scope: "js"})
 			.then(function(registration) {
 				registration.update();
-				console.log("registration", registration);
+				console.log("registration", registration.swVersion);
+				console.log("scope", registration.scope);
 				 return registration.pushManager.getSubscription()
 	  			.then(function(subscription) {
 	  				console.log(subscription);

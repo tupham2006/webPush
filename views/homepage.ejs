@@ -12,56 +12,64 @@ hello
 </html>
 <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-		function register(){
-			var endpoint;
-			if (!('serviceWorker' in navigator)) { // Service Worker isn't supported on this browser, disable or hide UI. 
-				return; 
-			}
+	var publicKey = "BFEo68txQDeRPcrmuxjyclLJnJzyWBwn7ZoakS2ymW1lr0HaRYJ3OKabljuqyFSWVrH-GTho6JiPpoX2HIJzn5o";
 
-			if (!('PushManager' in window)) { // Push isn't supported on this browser, disable or hide UI. 
-				return;
-			}
+	function register(){
+		var endpoint;
+		if (!('serviceWorker' in navigator)) { // Service Worker isn't supported on this browser, disable or hide UI. 
+			return; 
+		}
 
-			// register
-			navigator.serviceWorker.register('/js/sw.js', {scope: "./js/"})
-			.then(function(registration) {
-				registration.update();
-				console.log("registration", registration.swVersion);
-				console.log("scope", registration.scope);
-				 return registration.pushManager.getSubscription()
-	  			.then(function(subscription) {
-	  				console.log(subscription);
-						if (subscription) {
-							endpoint = subscription.endpoint;
-				      return subscription;
-				    }
-				    
-				    return registration.pushManager.subscribe({
-				     userVisibleOnly: true,
-				     applicationServerKey: urlBase64ToUint8Array("BFEo68txQDeRPcrmuxjyclLJnJzyWBwn7ZoakS2ymW1lr0HaRYJ3OKabljuqyFSWVrH-GTho6JiPpoX2HIJzn5o")
-				   	});
-				  });
-	  		})
-			.then(function(subscription) {   
-				if(subscription){
-					
-					$.ajax({
-						method: "POST",
-						headers: {
-				      'Content-Type': 'application/json'
-				    },
-						url:"/webPush/register",
-						data: JSON.stringify(subscription),
-						success: function(response){
-				  		console.log("response", response);
+		if (!('PushManager' in window)) { // Push isn't supported on this browser, disable or hide UI. 
+			return;
+		}
+
+		// register a ws
+		getServiceWorker()
+			.then(function(registration){
+
+				// get permission
+				askPermission()
+					.then(function(permission){
+
+						if(permission !== "denied"){ // continues action if notification is not denied
+
+							// Check subscription
+							 return registration.pushManager.getSubscription()
+				  			.then(function(subscription) {
+
+									if (!subscription) { // not sub, sub a new
+								    return registration.pushManager.subscribe({
+								     userVisibleOnly: true,
+								     applicationServerKey: urlBase64ToUint8Array(publicKey)
+								   	})
+
+								   	.then(function(subscription){
+								   		// send sub data to save on server
+								   		if(subscription){
+												$.ajax({
+													method: "POST",
+													headers: {
+											      'Content-Type': 'application/json'
+											    },
+													url:"/webPush/register",
+													data: JSON.stringify(subscription),
+													success: function(response){
+											  		console.log("response", response);
+													}
+												});
+											}
+								   	});
+							    }
+							  });
 						}
 					});
-					
-				}
+	  	})
 
+			.catch(function(e){
+				console.log(e);
 			});
-			
-		}
+	}
 
 	function send(){
 		$.post({
@@ -76,38 +84,30 @@ hello
 
 	}
 
+	function askPermission() {
+	  return new Promise(function(resolve, reject) {
+	    Notification.requestPermission(function(result) {
+	      resolve(result);
+	    });
+	  });
+	}
+
 	function deregisterWebPush() {
-		console.log("deregisterWebPush", deregisterWebPush);
 
-			    console.log('run it');
-			    var myController = navigator.serviceWorker.controller;
-			    console.log(myController);
-  		navigator.serviceWorker.ready
-			  .then(function(registration) {
-			    console.log('A service worker is active:', registration.active);
-
-			    // At this point, you can call methods that require an active
-			    // service worker, like registration.pushManager.subscribe()
-			  });
-
-		// get reader service worker
-		// navigator.serviceWorker.ready
-		// 	.then(function(registration) {
-		//   	console.log("registration", registration);
-		navigator.serviceWorker.register('/js/sw.js', {scope: "./js/"})
+		getServiceWorker()
 			.then(function(registration) {
 			// get sub
 		  registration.pushManager.getSubscription()
 		  	.then(function(subscription) {
 		  		var endpoint = "";
-		  		console.log("subscription", subscription)
+		  		console.log("subscription", subscription);
 		  		if(subscription){
 		  			endpoint = subscription.endpoint;
 
 		  		// send deregister to server
 			    subscription.unsubscribe()
 				    .then(function(successful) {
-							console.log(successful, "successful")
+							console.log(successful, "successful");
 				      $.post({
 								headers: {
 						      'Content-Type': 'application/json'
@@ -124,25 +124,34 @@ hello
 			    	});
 		  		}
 		  });        
-		})
-
-		// 	.catch(function(e){
-		// 		console.log("bug", e)
-		// 	})
+		});
 	}
 
-		function urlBase64ToUint8Array(base64String) {
-		  var padding = '='.repeat((4 - base64String.length % 4) % 4);
-		  var base64 = (base64String + padding)
-		    .replace(/\-/g, '+')
-		    .replace(/_/g, '/');
-		 
-		  var rawData = window.atob(base64);
-		  var outputArray = new Uint8Array(rawData.length);
-		 
-		  for (var i = 0; i < rawData.length; ++i) {
-		    outputArray[i] = rawData.charCodeAt(i);
-		  }
-		  return outputArray;
-		}
+	function getServiceWorker(){
+		return new Promise(function(resolve, reject){
+			navigator.serviceWorker.register('/js/sw.js')
+			.then(function(registration) {
+				resolve(registration);
+			})
+
+			.catch(function (e) {
+				reject(e);
+			});
+		});
+	}
+
+	function urlBase64ToUint8Array(base64String) {
+	  var padding = '='.repeat((4 - base64String.length % 4) % 4);
+	  var base64 = (base64String + padding)
+	    .replace(/\-/g, '+')
+	    .replace(/_/g, '/');
+	 
+	  var rawData = window.atob(base64);
+	  var outputArray = new Uint8Array(rawData.length);
+	 
+	  for (var i = 0; i < rawData.length; ++i) {
+	    outputArray[i] = rawData.charCodeAt(i);
+	  }
+	  return outputArray;
+	}
 </script>

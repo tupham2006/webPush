@@ -23,8 +23,6 @@ self.addEventListener('push', function(event) {
 	 );
 });
 
-console.log("assssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
 // self.addEventListener('notificationclick', function(e) {
 //   if (e.notification.tag !== 'user_visible_auto_notification') {
 //     // Open a same-origin page until https://code.google.com/p/chromium/issues/detail?id=457187

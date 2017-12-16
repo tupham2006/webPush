@@ -18,14 +18,12 @@ self.addEventListener('push', function(event) {
 	 		lang: 'vi',
 	 		body: event.data.text(),
 	 		icon: 'https://s3-ap-northeast-1.amazonaws.com/salonherodev/PROD/Common/logo_blue.png',
-	 		data: {
-		     url: "https://facebook.com"
-		   }
 	 	})
 	 );
 });
 
 self.addEventListener('notificationclick', function(e) {
+	console.log(e);
   if (e.notification.tag !== 'user_visible_auto_notification') {
     // Open a same-origin page until https://code.google.com/p/chromium/issues/detail?id=457187
     // is resolved.

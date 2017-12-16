@@ -1,3 +1,4 @@
+console.log('call to this sw');
 self.addEventListener('install', function(e) {
   console.log('installed');
   e.waitUntil(self.skipWaiting());

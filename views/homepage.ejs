@@ -23,7 +23,7 @@ hello
 			}
 
 			// register
-			navigator.serviceWorker.register('/js/sw.js', {scope: "js"})
+			navigator.serviceWorker.register('/js/sw.js', {scope: "./js/"})
 			.then(function(registration) {
 				registration.update();
 				console.log("registration", registration.swVersion);

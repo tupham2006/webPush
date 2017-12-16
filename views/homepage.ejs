@@ -27,6 +27,7 @@ hello
 			.then(function(registration) {
 				 return registration.pushManager.getSubscription()
 	  			.then(function(subscription) {
+	  				console.log(subscription);
 						if (subscription) {
 							endpoint = subscription.endpoint;
 				      return subscription;

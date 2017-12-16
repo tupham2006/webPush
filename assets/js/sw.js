@@ -13,11 +13,10 @@ self.addEventListener('activate', function(e) {
 // add Event Listener push to receive notification
 self.addEventListener('push', function(event) {
   console.log('push');
-  var test = event.data.json();
 	 event.waitUntil(
 	 	self.registration.showNotification('SalonHero', {
 	 		lang: 'vi',
-	 		body: test.message,
+	 		body: event.data.text(),
 	 		icon: 'https://s3-ap-northeast-1.amazonaws.com/salonherodev/PROD/Common/logo_blue.png',
 	 		data: {
 		     url: "https://facebook.com"

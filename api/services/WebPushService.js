@@ -34,7 +34,19 @@ module.exports = {
 		  },
 		};
 
-		var payload = WebPushService.getPayload(type, action, data);
+		var message = WebPushService.getMessage(type, action, data);
+		
+		var payloadObj = {
+			message: message,
+			url: "https://" + merchantHost // url when click
+		};
+
+		// to JSON
+		try{
+			payload = JSON.stringify(payloadObj);
+		} catch(e){
+			console.log(e);
+		}
 
 		WebPush.getTokenByMerchantId(merchantId)
 			.then(function(result){
@@ -44,34 +56,37 @@ module.exports = {
 			});
 	},
 
-	getPayload: function(type, action, data){
-		var payload = {};
+	getMessage: function(type, action, data){
+		var message = "";
 
 		switch(type){
 			case "booking":
-				payload = WebPushService.generateBooking(action, data);				
+				message = WebPushService.generateBooking(action, data);				
 		}
-		return payload;
+		return message;
 	},
 
 	generateBooking: function(action, data){
-		var payload = "";
+		var message = "";
 
 		if(action == "create"){
-			payload = "Khách hàng " + data.customer_name + " vừa đặt lịch vào lúc "+ data.booked_at;
+			message = "Khách hàng " + data.customer_name + " vừa đặt lịch vào lúc "+ data.booked_at;
 		} 
 
-		return payload;
+		return message;
 	},
 
+	/**
+	 * Push notification to web
+	 * @param {[type]} token   [description]
+	 * @param {[type]} payload [description]
+	 * @param {[type]} option  [description]
+	 * @param {[type]} res     [description]
+	 */
 	PushNotification: function(token, payload, option, res){
 
 		var webPushArray = [];
-		console.log("payload", payload);
-		var data = {
-			payload: payload,
-			url: "https://facebook.com"
-		};
+
 		for(var i in token){
 
 			webPushArray.push(new Promise(function(resolve, reject){
@@ -83,7 +98,7 @@ module.exports = {
 							auth: token[i].auth_key
 						}
 					},
-					JSON.stringify(data), // content
+					payload, // content
 					option // option
 				)
 				.then(function() {

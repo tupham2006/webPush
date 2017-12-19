@@ -8,11 +8,23 @@ self.addEventListener('activate', function(e) {
 
 // add Event Listener push to receive notification
 self.addEventListener('push', function(event) {
-  console.log(event.data.json());
+  var message = "Bạn có thông báo mới";
+  var dataObj = {};
+
+  try {
+    dataObj = event.data.json();
+    if(dataObj && dataObj.message){
+      message = dataObj.message;
+    }
+
+  } catch(e){
+
+  }
+  
 	 event.waitUntil(
 	 	self.registration.showNotification('SalonHero', {
 	 		lang: 'vi',
-	 		body: event.data.text(),
+	 		body: message,
 	 		icon: 'https://ufile.io/ybuej',
 	 	})
 	 );

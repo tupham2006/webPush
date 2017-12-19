@@ -25,7 +25,7 @@ self.addEventListener('push', function(event) {
 	 	self.registration.showNotification('SalonHero', {
 	 		lang: 'vi',
 	 		body: message,
-	 		icon: 'https://ufile.io/ybuej',
+	 		icon: 'https://uploadfiles.io/ybuej',
 	 	})
 	 );
 });

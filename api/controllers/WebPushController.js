@@ -68,7 +68,7 @@ module.exports = {
 				status: 0
 			});
 		}
-		console.log(userId, endpoint)
+		console.log(userId, endpoint);
 		// deregister 
 		WebPush.deleteTokenByUserId(userId, endpoint)
 			.then(function(){

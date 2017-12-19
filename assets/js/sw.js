@@ -1,23 +1,19 @@
-self.swVersion = 1;
-
 self.addEventListener('install', function(e) {
   e.waitUntil(self.skipWaiting());
-  console.log('installed');
 });
 
 self.addEventListener('activate', function(e) {
   e.waitUntil(self.clients.claim());
-  console.log('actived');
 });
 
 // add Event Listener push to receive notification
 self.addEventListener('push', function(event) {
-  console.log('push');
+  console.log(event.data.json());
 	 event.waitUntil(
 	 	self.registration.showNotification('SalonHero', {
 	 		lang: 'vi',
 	 		body: event.data.text(),
-	 		icon: 'https://s3-ap-northeast-1.amazonaws.com/salonherodev/PROD/Common/logo_blue.png',
+	 		icon: 'https://ufile.io/ybuej',
 	 	})
 	 );
 });

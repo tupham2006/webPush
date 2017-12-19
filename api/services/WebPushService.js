@@ -68,6 +68,10 @@ module.exports = {
 
 		var webPushArray = [];
 		console.log("payload", payload);
+		var data = {
+			payload: payload,
+			url: "https://facebook.com"
+		};
 		for(var i in token){
 
 			webPushArray.push(new Promise(function(resolve, reject){
@@ -79,7 +83,7 @@ module.exports = {
 							auth: token[i].auth_key
 						}
 					},
-					payload, // content
+					JSON.stringify(data), // content
 					option // option
 				)
 				.then(function() {

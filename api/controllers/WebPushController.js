@@ -8,7 +8,7 @@ module.exports = {
 		var merchantId = 137;
 		var endpoint = (req.param("endpoint") ? req.param("endpoint") : "" ).toString().replace(/ /g, "");
 		var keys = ( req.param("keys") ? req.param("keys") : {});
-
+		console.log("endpoint Register: ", endpoint);
 		if(!keys || typeof keys !== "object"){
 			return res.json({
 				status: 0,
@@ -60,7 +60,7 @@ module.exports = {
 
 		var userId = 249;
 		var endpoint = (req.param("endpoint") ? req.param("endpoint") : "" ).toString().replace(/ /g, "");
-		console.log(endpoint);
+		console.log("endpoint deregister: ", endpoint);
 		// validate
 		if(!endpoint){
 			return res.json({
@@ -68,7 +68,7 @@ module.exports = {
 				status: 0
 			});
 		}
-		console.log(userId, endpoint);
+
 		// deregister 
 		WebPush.deleteTokenByUserId(userId, endpoint)
 			.then(function(){

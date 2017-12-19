@@ -60,7 +60,7 @@ module.exports = {
 
 		var userId = 249;
 		var endpoint = (req.param("endpoint") ? req.param("endpoint") : "" ).toString().replace(/ /g, "");
-
+		console.log(endpoint);
 		// validate
 		if(!endpoint){
 			return res.json({

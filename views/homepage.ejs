@@ -100,24 +100,25 @@ hello
 		  registration.pushManager.getSubscription()
 		  	.then(function(subscription) {
 		  		var endpoint = "";
-		  		console.log("subscription", subscription);
+		  		
 		  		if(subscription){
 		  			endpoint = subscription.endpoint;
 
 		  		// send deregister to server
 			    subscription.unsubscribe()
 				    .then(function(successful) {
-							console.log(successful, "successful");
-				      $.post({
-								headers: {
-						      'Content-Type': 'application/json'
-						    },
-						    data: JSON.stringify(endpoint),
-								url:"/webPush/deregister",
-								success: function(response){
-						  		console.log("response", response);
-								}
-							});
+							if(successful){
+					      $.post({
+									headers: {
+							      'Content-Type': 'application/json'
+							    },
+							    data: JSON.stringify(endpoint),
+									url:"/webPush/deregister",
+									success: function(response){
+							  		console.log("response", response);
+									}
+								});
+							}
 								
 				    }).catch(function(e) {
 				    	alert(e);
